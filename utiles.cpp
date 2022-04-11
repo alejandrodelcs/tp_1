@@ -25,14 +25,14 @@ int tamanioCadena(const char *cadena) {
 }
 
 void mostrarResultado(const int *vectorPosiciones, int cursor) {
-    if (*vectorPosiciones != '\0') {
+    if (cursor > 1) {
         std::cout << "Resultado: ";
         for (int p = 0; p < cursor - 1; p++) {
             std::cout << *(vectorPosiciones + p);
             if (p != cursor - 2) // imprimo guiones hasta una posición antes del ultimo número
                 std::cout << " - ";
         }
-        std::cout<<std::endl;
+        std::cout << std::endl;
     } else {
         std::cout << "No se encuentra esa frase en la historia indicada." << std::endl;
     }
@@ -43,16 +43,14 @@ void mostrarResultado(const int *vectorPosiciones, int cursor) {
 
 void buscarPalabra(const char *palabraAbuscar, const char *texto) {
 
-    int cursor = 1;
-    int posTexto = 0;
-    int caracteresIguales;
+    int cursor = 1, posTexto = 0, caracteresIguales, posPalabraABuscar;
     int tamanioPalabraABuscar = tamanioCadena(palabraAbuscar);
     int *vectorPosiciones = crearVector(cursor); // inicializo el vector
 
     while (*(texto + posTexto) != '\0') {
         if (tolower(*(texto + posTexto)) == tolower(*(palabraAbuscar))) {
             caracteresIguales = 0;
-            int posPalabraABuscar = 0;
+            posPalabraABuscar = 0;
             while (*(palabraAbuscar + posPalabraABuscar) != '\0' &&
                    tolower(*(texto + posTexto + posPalabraABuscar)) == tolower(*(palabraAbuscar + posPalabraABuscar))) {
                 caracteresIguales++;
