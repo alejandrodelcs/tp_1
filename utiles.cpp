@@ -44,27 +44,25 @@ void buscarPalabra(const char *palabraAbuscar, const char *texto) {
 
     int cursor = 1, posTexto = 0, caracteresIguales, posPalabraABuscar;
     int tamanioPalabraABuscar = tamanioCadena(palabraAbuscar);
-    int tamanioTexto = tamanioCadena(texto);
     int *vectorPosiciones = crearVector(cursor); // inicializo el vector
 
-    if (tamanioPalabraABuscar < tamanioTexto)
-        while (*(texto + posTexto) != '\0') {
-            if (tolower(*(texto + posTexto)) == tolower(*(palabraAbuscar))) {
-                caracteresIguales = 0;
-                posPalabraABuscar = 0;
-                while (*(palabraAbuscar + posPalabraABuscar) != '\0' &&
-                       tolower(*(texto + posTexto + posPalabraABuscar)) == tolower(*(palabraAbuscar + posPalabraABuscar))) {
-                    caracteresIguales++;
-                    if (caracteresIguales == tamanioPalabraABuscar) {
-                        *(vectorPosiciones + cursor - 1) = posTexto;
-                        cursor++;
-                        redimensionarVector(cursor, cursor - 1, vectorPosiciones);
-                    }
-                    posPalabraABuscar++;
+    while (*(texto + posTexto) != '\0') {
+        if (tolower(*(texto + posTexto)) == tolower(*(palabraAbuscar))) {
+            caracteresIguales = 0;
+            posPalabraABuscar = 0;
+            while (*(palabraAbuscar + posPalabraABuscar) != '\0' &&
+                   tolower(*(texto + posTexto + posPalabraABuscar)) == tolower(*(palabraAbuscar + posPalabraABuscar))) {
+                caracteresIguales++;
+                if (caracteresIguales == tamanioPalabraABuscar) {
+                    *(vectorPosiciones + cursor - 1) = posTexto;
+                    cursor++;
+                    redimensionarVector(cursor, cursor - 1, vectorPosiciones);
                 }
+                posPalabraABuscar++;
             }
-            posTexto++;
         }
+        posTexto++;
+    }
     mostrarResultado(vectorPosiciones, cursor);
 }
 
