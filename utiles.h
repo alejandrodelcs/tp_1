@@ -6,7 +6,7 @@
 
 
 /*
- * PRE: -
+ * PRE: tamanio tiene que ser mayor a cero
  * POST: reserva memoria dinamica y devuelve un puntero
  */
 int *crearVector(int tamanio);
@@ -33,9 +33,10 @@ int  tamanioCadena(const char* cadena);
 void mostrarResultado(const int *vectorPosiciones, int cursor);
 
 /*
- * PRE: Recibe el texto y la palabra a buscar
- * POST: devuelve un vector con las posiciones de la palabra
- *       que se encontro en el texto
+ * PRE:  Recibe el texto y la palabra a buscar
+ * POST: Devuelve un vector con las posiciones de la palabra
+ *       que se encontro en el texto caso contrario
+ *       devuelve un vector de tamaño 1
  */
 void buscarPalabra(const char *palabraAbuscar, const char *texto);
 
